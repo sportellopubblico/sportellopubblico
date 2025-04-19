@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SportelloPubblico</title>
-  </head>
-  <body>
-    <h1>Benvenuto su SportelloPubblico!</h1>
-    <p>Sito in costruzione. Presto sarà online il sistema per prenotare appuntamenti.</p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportelloPubblico</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #2e8b57, #f9c846);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+      transform: rotateX(5deg) rotateY(5deg);
+    }
+    h1 {
+      text-align: center;
+      color: #2e8b57;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #246f45;
+    }
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .whatsapp {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .whatsapp a {
+      background-color: #25D366;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SportelloPubblico</h1>
+    <form action="https://formspree.io/f/xeoayeyq" method="POST" onsubmit="showSuccessMessage(); return true;">
+      <label for="name">Nome:</label>
+      <input type="text" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" name="email" required>
+      <label for="telefono">Telefono:</label>
+      <input type="text" name="telefono" required>
+      <label for="message">Motivo dell'appuntamento:</label>
+      <textarea name="message" rows="4" required></textarea>
+      <input type="hidden" name="Firma" value="Richiesta inviata tramite www.sportellopubblico.it">
+      <button type="submit">Invia richiesta</button>
+    </form>
+    <div id="success-message" class="success" style="display:none;">
+      ✅ Grazie! La tua richiesta è stata inviata con successo.
+    </div>
+    <div class="whatsapp">
+      <a href="https://wa.me/393517624080" target="_blank">Contattaci su WhatsApp</a>
+    </div>
+  </div>
+  <script>
+    function showSuccessMessage() {
+      document.getElementById("success-message").style.display = "block";
+    }
+  </script>
+</body>
 </html>
