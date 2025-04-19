@@ -52,7 +52,7 @@
   <div class="container">
     <img src="logo.png" alt="Logo" />
     <h2>SportelloPubblico</h2>
-    <form action="https://formspree.io/f/xeoayeyq" method="POST">
+    <form id="form" action="https://formspree.io/f/xeoayeyq" method="POST">
       <input type="text" name="nome" placeholder="Nome" required />
       <input type="email" name="email" placeholder="Email" required />
       <input type="tel" name="telefono" placeholder="Telefono" required />
@@ -74,6 +74,26 @@
       🕒 Dal lunedì al venerdì: 9:30 - 13:00 | 16:00 - 19:00</p>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById("form");
+
+    form.addEventListener("submit", function (e) {
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      // Invia anche a Make.com
+      fetch("https://hook.eu2.make.com/afc1t3w4ra1ojutixienru2ohrosytwt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+    });
+  </script>
 </body>
 </html>
-
