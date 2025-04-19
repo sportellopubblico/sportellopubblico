@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SportelloPubblico</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #2e8b57, #f9c846);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    .header {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .header img {
+      width: 100px;
+      height: auto;
+    }
+    .header h1 {
+      margin: 10px 0 0;
+      color: #2e8b57;
+    }
+    .header p {
+      font-style: italic;
+      color: #333;
     }
     .container {
       background-color: #fff;
@@ -21,12 +37,8 @@
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       max-width: 500px;
-      width: 100%;
-      transform: rotateX(5deg) rotateY(5deg);
-    }
-    h1 {
-      text-align: center;
-      color: #2e8b57;
+      width: 90%;
+      margin-top: 20px;
     }
     label {
       display: block;
@@ -68,11 +80,21 @@
       color: white;
       text-decoration: none;
     }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #444;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="header">
+    <img src="logo.png" alt="Logo">
     <h1>SportelloPubblico</h1>
+    <p>Il punto digitale dei tuoi diritti</p>
+  </div>
+  <div class="container">
     <form action="https://formspree.io/f/xeoayeyq" method="POST" onsubmit="showSuccessMessage(); return true;">
       <label for="name">Nome:</label>
       <input type="text" name="name" required>
@@ -82,6 +104,8 @@
       <input type="text" name="telefono" required>
       <label for="message">Motivo dell'appuntamento:</label>
       <textarea name="message" rows="4" required></textarea>
+      <label for="codice">Codice di sicurezza:</label>
+      <input type="text" name="codice" required>
       <input type="hidden" name="Firma" value="Richiesta inviata tramite www.sportellopubblico.it">
       <button type="submit">Invia richiesta</button>
     </form>
@@ -92,6 +116,11 @@
       <a href="https://wa.me/393517624080" target="_blank">Contattaci su WhatsApp</a>
     </div>
   </div>
+  <footer>
+    <p><strong>Indirizzo:</strong> Via Roma 119, Lariano (RM)<br>
+    <strong>Orari:</strong> Lun-Ven 9:30–13:00 / 16:00–19:00<br>
+    <strong>Email:</strong> info@caflariano.it</p>
+  </footer>
   <script>
     function showSuccessMessage() {
       document.getElementById("success-message").style.display = "block";
