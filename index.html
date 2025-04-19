@@ -64,11 +64,6 @@
     button:hover {
       background-color: #246f45;
     }
-    .success {
-      color: green;
-      text-align: center;
-      margin-top: 1rem;
-    }
     .whatsapp {
       margin-top: 1rem;
       text-align: center;
@@ -95,21 +90,20 @@
     <p>Il punto digitale dei tuoi diritti</p>
   </div>
   <div class="container">
-    <form action="https://formspree.io/f/xeoayeyq" method="POST" onsubmit="showSuccessMessage(); return true;">
+    <form action="https://hook.eu2.make.com/afc1t3w4ra1ojutixienru2ohrosytwt" method="POST">
       <label for="name">Nome:</label>
       <input type="text" name="name" required>
       <label for="email">Email:</label>
       <input type="email" name="email" required>
       <label for="telefono">Telefono:</label>
       <input type="text" name="telefono" required>
+      <label for="data">Data dell'appuntamento:</label>
+      <input type="date" name="data" required min="" id="datePicker">
       <label for="message">Motivo dell'appuntamento:</label>
       <textarea name="message" rows="4" required></textarea>
       <input type="hidden" name="Firma" value="Richiesta inviata tramite www.sportellopubblico.it">
       <button type="submit">Invia richiesta</button>
     </form>
-    <div id="success-message" class="success" style="display:none;">
-      ✅ Grazie! La tua richiesta è stata inviata con successo.
-    </div>
     <div class="whatsapp">
       <a href="https://wa.me/393517624080" target="_blank">Contattaci su WhatsApp</a>
     </div>
@@ -120,9 +114,31 @@
     <strong>Email:</strong> info@caflariano.it</p>
   </footer>
   <script>
-    function showSuccessMessage() {
-      document.getElementById("success-message").style.display = "block";
+    const datePicker = document.getElementById(\"datePicker\");
+    const today = new Date();
+    const pad = n => n < 10 ? '0' + n : n;
+    const formatDate = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+    function isValidDay(date) {
+      return [1, 3, 5].includes(date.getDay()); // lunedì (1), mercoledì (3), venerdì (5)
     }
+
+    function getNextValidDate(start) {
+      const nextDate = new Date(start);
+      while (!isValidDay(nextDate)) {
+        nextDate.setDate(nextDate.getDate() + 1);
+      }
+      return formatDate(nextDate);
+    }
+
+    datePicker.setAttribute('min', getNextValidDate(today));
+    datePicker.addEventListener('input', function () {
+      const selected = new Date(this.value);
+      if (!isValidDay(selected)) {
+        alert(\"Puoi prenotare solo lunedì, mercoledì o venerdì.\");
+        this.value = '';
+      }
+    });
   </script>
 </body>
 </html>
